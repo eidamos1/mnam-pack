@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mňam Pack</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5efe7;
+      color: #4e342e;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #d7ccc8;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    nav {
+      background-color: #bcaaa4;
+      padding: 0.5rem;
+      text-align: center;
+    }
+
+    nav p {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #4e342e;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: #fffaf5;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .product {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .product-info {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .product-info h2 {
+      margin-top: 0;
+    }
+
+    .product-img {
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+      position: relative;
+    }
+
+    .product-img img {
+      max-width: 80%;
+      border-radius: 8px;
+    }
+
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.3);
+      color: white;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+    }
+
+    .nav-arrow.left {
+      left: 5%;
+    }
+
+    .nav-arrow.right {
+      right: 5%;
+    }
+
+    .toggle-button {
+      background-color: #a1887f;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+
+    .extra-info {
+      display: none;
+      margin-top: 1rem;
+      border-top: 1px solid #ccc;
+      padding-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .product {
+        flex-direction: column;
+        text-align: center;
+      }
+      .nav-arrow.left, .nav-arrow.right {
+        top: 40%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mňam Pack</h1>
+  </header>
+
+  <nav>
+    <p>Náhledový web pro produkt</p>
+  </nav>
+
+  <div class="container">
+    <div class="product">
+      <div class="product-info">
+        <h2>Mňam Pack</h2>
+        <p>Elegantní přenosný boxík na dortíky, koláčky nebo jiné dobroty.</p>
+        <button class="toggle-button" onclick="toggleInfo()">Zjistit víc</button>
+        <div class="extra-info" id="extraInfo">
+          <p><strong>Pro koho?</strong></p>
+          <ul>
+            <li>Pro pekaře a cukráře na přenos dezertů</li>
+            <li>Pro studenty, kteří nosí občerstvení na koleje</li>
+            <li>Pro všechny, kdo chtějí darovat sladkost stylově</li>
+          </ul>
+          <p><strong>Výhody:</strong></p>
+          <ul>
+            <li>Stylový design</li>
+            <li>Snadné přenášení</li>
+            <li>Opakovaně použitelné</li>
+          </ul>
+        </div>
+      </div>
+      <div class="product-img">
+        <button class="nav-arrow left" onclick="changeImage(-1)">&#8592;</button>
+        <img id="productImage" src="obal1.jpg" alt="Fotka obalu">
+        <button class="nav-arrow right" onclick="changeImage(1)">&#8594;</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleInfo() {
+      const info = document.getElementById("extraInfo");
+      info.style.display = (info.style.display === "block") ? "none" : "block";
+    }
+
+    const images = ["obal1.jpg", "obal2.jpg", "obal3.jpg"];
+    let currentImage = 0;
+
+    function changeImage(direction) {
+      currentImage = (currentImage + direction + images.length) % images.length;
+      document.getElementById("productImage").src = images[currentImage];
+    }
+  </script>
+</body>
+</html>
